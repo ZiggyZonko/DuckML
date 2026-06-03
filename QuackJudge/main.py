@@ -40,14 +40,20 @@ while True:
 
     probabilities = model.predict_proba(message_vector)[0]
 
-    print("\nQuackJudge says:", prediction[0] + " Duck 🦆")
-    print("\nConfidence:")
+    print("\n=== QuackJudge ===")
+    print("Verdict:", prediction[0] + " Duck 🦆")
+    print("\nProbability Breakdown")
 
-    for label, probability in zip(model.classes_, probabilities):
-        print(f"{label:8}: {probability * 100:.2f}%")
+    for label, probability in sorted(
+        zip(model.classes_, probabilities),
+        key=lambda x: x[1],
+        reverse=True
+    ):
+        bar = "█" * int(probability * 20)
+        print(f"{label:8} {probability * 100:6.2f}% {bar}")
 
-    print(
-    vectorizer.transform(
+    print("\nVectorized Message:",
+        vectorizer.transform(
         [message]
     ).toarray()
 )

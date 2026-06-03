@@ -1,0 +1,3 @@
+--> Markov Chain, predicts what words may be next
+--> Naive Bayes Classifier, classifies words into categories.
+--> Psuedo Labbing
